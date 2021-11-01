@@ -1,0 +1,81 @@
+1) Посмотреть где я - pwd 
+
+2) Создать папку - mkdir qa 
+
+3) Зайти в папку - cd qa 
+
+4) Создать 3 папки - mkdir test1 test2 test3
+
+5) Зайти в любую папку - cd test1 
+
+6) Создать 5 файлов (3 txt, 2 json) - touch q.txt a.txt qa.txt w.json e.json 
+
+7) Создать 3 папки - mkdir test11 test12 test13 
+
+8.Вывести список содержимого папки - cd .. 
+ 				    ls test1 
+
+
+9) + Открыть любой txt файл - cd test1 
+			     vim q.txt 
+
+10) + написать туда что-нибудь, любой текст - 	i 
+						1)1111
+						2)2222
+						3)3333
+						4)4444
+
+11) + сохранить и выйти	- 	нажимаем esc для режима ввода команд 
+				:w - сохраняем 
+				:q - выходим 
+
+
+12) Выйти из папки на уровень выше	cd .. 
+
+13) переместить любые 2 файла, которые вы создали, в любую другую папку.	- mv test1/qa.txt test1/a.txt test2/ 
+
+14) скопировать любые 2 файла, которые вы создали, в любую другую папку.	- cp test1/e.json test1/w.json test2/
+
+
+15) Найти файл по имени	- test1-type f -name w.json 
+
+16) просмотреть содержимое в реальном времени (команда grep) изучите как она работает.	- cat test2/q.txt
+
+
+17) вывести несколько первых строк из текстового файла	- head -n 2 test2/q.txt
+
+18) вывести несколько последних строк из текстового файла	- tail -n 2 test2/q.txt 
+
+19) просмотреть содержимое длинного файла (команда less) изучите как она работает.	- less test2/q.txt 
+
+20) вывести дату и время	- date 
+
+=========
+
+Задание *
+1) Отправить http запрос на сервер.
+http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000	- curl http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000
+
+Ответ, который пришёл: 
+
+{"age":"32","family":{"children":[["Alex",24],["Kate",12]],"pets":{"cat":{"age":3,"name":"Sunny"},"dog":{"age":4,"name":"Luky"}},"u_salary_1_5_year":4000},"name":"Vadim","salary":1000}
+
+2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13 
+
+touch script.sh 
+vim script.sh
+
+(перечисляем Команды) 
+
+cd ~/qa 
+mkdir test1 test2 test3 
+cd test1 
+touch q.txt a.txt qa.txt w.json e.json 
+mkdir test11 test12 test13 
+cd .. 
+ls test1 
+mv test1/qa.txt test1/a.txt test2/ 
+:wq 
+chmod +x script.sh
+./script.sh
+
