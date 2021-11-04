@@ -182,7 +182,7 @@ pm.test("salary3", function () {
          },
          {
             "key":"salary",
-            "value":"100",
+            "value":"1000",
             "type":"text"
          },
          {
@@ -243,5 +243,79 @@ pm.test("weight*0.012", function () {
 pm.test("weight*2.5", function () {
     var jsonData = pm.response.json();
     pm.expect(jsonData.daily_sleep).to.eql(weight * 2.5);
+});
+```
+### POST /get_test_user
+```json
+"request":{
+   "method":"POST",
+   "header":[
+   ],
+   "body":{
+      "mode":"formdata",
+      "formdata":[
+         {
+            "key":"age",
+            "value":"23",
+            "type":"text"
+         },
+         {
+            "key":"salary",
+            "value":"{{salary}}",
+            "type":"text"
+         },
+         {
+            "key":"name",
+            "value":"{{name}}",
+            "type":"text"
+         },
+         {
+            "key":"auth_token",
+            "value":"{{token}}",
+            "type":"text"
+         }
+      ]
+   },
+   "url":{
+      "raw":"{{url}}/get_test_user",
+      "host":[
+         "{{url}}"
+      ],
+      "path":[
+         "get_test_user"
+      ]
+   }
+},
+"response":[
+   
+]
+```
+Тесты
+
+```javascript
+// Статус код 200
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+// Проверка формата json
+const schema = {"properties": {"alpha": {"type": "boolean"}}};
+
+pm.test("Schema is valid ", function() {
+pm.response.to.have.jsonSchema(schema);
+});
+
+// Проверить, что поле name = значению переменной name из окружения 
+pm.test("name", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.name).to.eql(pm.environment.get("name"));
+});
+
+
+// Проверить, что значение поля age соответствует отправленному в запросе значению age 
+
+pm.test("age", function () {
+    var jsonData = pm.response.json();
+    pm.expect(+jsonData.age).to.eql(23);
 });
 ```
